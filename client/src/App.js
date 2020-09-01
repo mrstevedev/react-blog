@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Header from './components/Header';
@@ -170,9 +170,7 @@ function App() {
       setPost(post);
   }
 
-  useEffect(() => {
-    console.log('useEffect ran');
-    
+  useEffect(() => {    
     const fetchData = async () => {
         const res1 = await axios(`${ REACT_APP_API_URL }/posts`)
         const res2 = await axios(`${ REACT_APP_API_URL }/comments`)
@@ -183,7 +181,7 @@ function App() {
   }, []);
 
   return (
-    <div>    
+    <Fragment>    
      <Header />
       <Grid container spacing={1}>
         <Sidebar 
@@ -299,7 +297,7 @@ function App() {
         </Alert>
      </Snackbar>
      
-    </div>
+    </Fragment>
   );
 }
 
