@@ -4,7 +4,7 @@ Custom Blog application built with React.js, Material UI, Express.js, & Postgres
 
 ## Installation
 
-Use the package manager [npm](https://www.npmjs.com/get-npm) to install foobar.
+Use the package manager [npm](https://www.npmjs.com/get-npm) to install dependencies.
 
 ## Inside /client
 
@@ -19,6 +19,7 @@ npm install
 ```
 
 ## Inside .env
+Create a .env file in the root of the project.
 ```bash
 DB_HOST=localhost
 DB_USER=<username>
@@ -39,6 +40,7 @@ posts
 ```bash
 comments
 ```
+
 
 ## Inside the root directory run:
 
