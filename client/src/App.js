@@ -132,7 +132,6 @@ function App() {
     }).then(res => res.json())
         .then(data => {
             setOpenAddPost(false);
-            // window.location.reload();
             setToastState({ open: true, ...newState });
         })
         .catch(err => console.log(err));
