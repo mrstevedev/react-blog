@@ -129,7 +129,7 @@ function Comment(props) {
                         </div>
                     {count === 0 ? (
                         <div className={classes.commentSection}>
-                            <p>There are no comments. Be the first to comment on this post.</p>                                 
+                            <p>Be the first to comment on this post.</p>                                 
                         </div>
                     ) : ''}
                     { comments.filter((comment) => comment.post_id === post.id).map(comment => (
