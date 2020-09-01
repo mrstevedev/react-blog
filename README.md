@@ -35,10 +35,24 @@ made_blog_posts
 
 ## Postgresql Tables
 ```bash
-posts
+## posts
+
+id pk integer
+title character varying
+body character varying
+createdAt date
+updatedAt date
 ```
 ```bash
-comments
+## comments
+
+id pk integer
+post_id integer
+comment character varying
+name character varying
+createdAt date
+updatedAt date
+
 ```
 
 
