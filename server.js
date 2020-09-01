@@ -5,7 +5,6 @@ const helmet = require('helmet');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const db = require('./config/db');
-const env = require("dotenv").config();
 const Post = require('./models/Post');
 const Comment = require('./models/Comment');
 
