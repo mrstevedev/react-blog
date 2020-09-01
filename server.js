@@ -53,7 +53,6 @@ app.post('/api/addPost', (req, res) => {
 
 app.post('/api/addComment', (req, res) => {
     const { post_id, commentName, commentBody } = req.body;
-    console.log(post_id, commentName, commentBody);
     res.json({ success: true, commentName, commentBody });
     Comment.create({
         post_id,
