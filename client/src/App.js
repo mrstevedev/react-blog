@@ -172,9 +172,7 @@ function App() {
 
   useEffect(() => {
     Promise.all([
-        fetch(`${ REACT_APP_API_URL }/posts`, {
-            method: "GET"
-        }),
+        fetch(`${ REACT_APP_API_URL }/posts`),
         fetch(`${ REACT_APP_API_URL }/comments`)
     ])
     .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
