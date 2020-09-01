@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import axios from 'axios';
 
 import "./App.scss";
 
@@ -170,15 +171,15 @@ function App() {
   }
 
   useEffect(() => {
-    Promise.all([
-        fetch(`${ REACT_APP_API_URL }/posts`),
-        fetch(`${ REACT_APP_API_URL }/comments`)
-    ])
-    .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-    .then(([data1, data2]) => {
-        setPosts(data1);
-        setComments(data2);
-    })
+    console.log('useEffect ran');
+    
+    const fetchData = async () => {
+        const res1 = await axios(`${ REACT_APP_API_URL }/posts`)
+        const res2 = await axios(`${ REACT_APP_API_URL }/comments`)
+        setPosts(res1.data);
+        setComments(res2.data);
+    }
+    fetchData();
   }, []);
 
   return (
