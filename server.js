@@ -57,7 +57,7 @@ app.post('/api/addComment', (req, res) => {
         post_id,
         name: commentName,
         comment: commentBody
-    }).then(comment => res.redirect('/'))
+    })
     .catch(err => console.log(err));
 });
 
