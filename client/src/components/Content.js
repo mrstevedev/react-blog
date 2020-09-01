@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'left',
       color: theme.palette.text.secondary,
       whiteSpace: 'nowrap',
-      height: '96%',
+      height: '98%',
       '@media(max-width: 768px)': {
         padding: '3rem 2rem !important',      
         whiteSpace: 'normal !important'
