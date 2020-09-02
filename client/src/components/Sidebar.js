@@ -52,7 +52,10 @@ const useStyles = makeStyles((theme) => ({
     right: '0',
     textAlign: 'right',
     overflow: 'hidden',
-    background: '#fff'
+    background: '#fff',
+    '@media(max-width: 768px)': {
+        whiteSpace: 'initial'
+    }
   }
 }));
 
