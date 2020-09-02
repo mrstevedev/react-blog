@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#f7f7f7',
         },
         '@media(max-width: 415px)': {
-            padding: '3rem 0',
+            padding: '2rem 0',
             borderBottom: 'solid 1px #ccc',
             '&:last-child': {
                 borderBottom: 'solid 1px transparent',
