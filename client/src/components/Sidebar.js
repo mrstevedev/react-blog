@@ -75,7 +75,7 @@ function Sidebar( props ) {
                 <Link key={post.id} href="#" onClick={(e) => props.handleGetPost(event, post)} underline="none" color="inherit">
                     <MenuItem className={classes.menuItem}>
                         { post.title }
-                        <CommentCount count={CommentCount} post={post} comments={comments} />
+                        <CommentCount post={post} comments={comments} />
                     </MenuItem>
                 </Link>
             )) }
