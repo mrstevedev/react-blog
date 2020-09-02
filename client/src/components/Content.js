@@ -30,67 +30,6 @@ const useStyles = makeStyles((theme) => ({
     title: {
       flexGrow: 1,
     },
-    postText: {
-      padding: '0.4rem 0 1rem'
-    },
-    commentSection: {
-        padding: '1rem 0',
-        maxHeight: '624px',
-        overflow: 'scroll'
-    },
-    commentHeader: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        '@media(max-width: 768px)': {
-            display: 'initial',
-            padding: '3rem 1rem !important',      
-          }
-    },
-    comment: {
-        margin: '0.2rem 0',
-        padding: '1rem 2rem',
-        borderRadius: '3px',
-        transition: '0.4s ease',
-        '&:nth-child(odd)': {
-            backgroundColor: '#f7f7f7'
-        },
-        '&:hover': {
-            backgroundColor: '#f7f7f7',
-        },
-        '@media(max-width: 415px)': {
-            padding: '2rem 0',
-            borderBottom: 'solid 1px #ccc',
-            '&:last-child': {
-                borderBottom: 'solid 1px transparent',
-            },
-            '&:nth-child(odd)': {
-                backgroundColor: 'transparent'
-            },
-            '&:hover': {
-                backgroundColor: 'transparent',
-            },
-          }
-    },
-    commentTxt: {
-        padding: '0.5rem 0'
-    },
-    commentName: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        '@media(max-width: 768px)': {
-            display: 'initial',
-          }
-    },
-    commentBtn: {
-        margin: '1rem 0'
-    },
-    postDate: {
-        fontWeight: '500',
-        fontSize: '12px'
-    },
-    showCount: {
-        fontSize: '14px'
-    },
     successMsg: {
         fontWeight: 'bold',
         color: 'cadetblue',
