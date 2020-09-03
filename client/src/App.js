@@ -13,6 +13,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import axios from 'axios';
+import useSWR, { trigger } from 'swr';
 
 import "./App.scss";
 
@@ -78,6 +79,9 @@ function App() {
 
   const { REACT_APP_API_URL } = process.env;
 
+  const { data, error1 } = useSWR(`${ REACT_APP_API_URL }/posts`, (url) => axios(url).then(res => setPosts(res.data)));
+  const { data2, error2 } = useSWR(`${ REACT_APP_API_URL }/comments`, (url) => axios(url).then(res => setComments(res.data)));
+
   const handleAddComment = (post, newState) => {
     // console.log(post);
       if(commentName.length === 0) {
@@ -134,6 +138,7 @@ function App() {
         .then(data => {
             setOpenAddPost(false);
             setToastState({ open: true, ...newState });
+            trigger(`${ REACT_APP_API_URL }/posts`)
         })
         .catch(err => console.log(err));
    }
@@ -170,15 +175,15 @@ function App() {
       setPost(post);
   }
 
-  useEffect(() => {    
-    const fetchData = async () => {
-        const res1 = await axios(`${ REACT_APP_API_URL }/posts`)
-        const res2 = await axios(`${ REACT_APP_API_URL }/comments`)
-        setPosts(res1.data);
-        setComments(res2.data);
-    }
-    fetchData();
-  }, []);
+//   useEffect(() => {    
+//     const fetchData = async () => {
+//         const res1 = await axios(`${ REACT_APP_API_URL }/posts`)
+//         const res2 = await axios(`${ REACT_APP_API_URL }/comments`)
+//         setPosts(res1.data);
+//         setComments(res2.data);
+//     }
+//     fetchData();
+//   }, []);
 
   return (
     <Fragment>    
