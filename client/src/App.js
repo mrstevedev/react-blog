@@ -108,6 +108,7 @@ function App() {
         .then(data => {
             setOpenAddComment(false);
             setToastState({ open: true, ...newState });
+            trigger(`${ REACT_APP_API_URL }/comments`);
         })
         .catch(err => console.log(err));
     }
