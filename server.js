@@ -26,6 +26,10 @@ app.use(cors({
 
 app.use(express.static('public'));
 
+app.get("*", (req, res) => {
+    res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
 app.get('/api/posts', (req, res) => {
     Post.findAll()
         .then(posts => {

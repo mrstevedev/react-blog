@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
       whiteSpace: 'nowrap',
     },
     paperContent: {
-      padding: '3rem 8rem',
+      padding: '3rem 4rem',
       margin: '1rem 1rem 0 1rem',
       textAlign: 'left',
       color: theme.palette.text.secondary,
