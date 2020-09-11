@@ -16,7 +16,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(helmet());
+// app.use(helmet());
 app.use(morgan('dev'));
 
 app.use(cors({
@@ -26,9 +26,9 @@ app.use(cors({
 
 app.use(express.static('public'));
 
-app.get("*", (req, res) => {
-    res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//     res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
+// });
 
 app.get('/api/posts', (req, res) => {
     Post.findAll()
