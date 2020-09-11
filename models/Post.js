@@ -2,6 +2,9 @@ const Sequelize = require('sequelize').Sequelize;
 const db = require('../config/db');
 
 const Post = db.define("post", {
+    id: {
+        type: integer
+    },
     title: {
         type: Sequelize.STRING
     },
