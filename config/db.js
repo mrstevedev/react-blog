@@ -3,7 +3,7 @@ const env = require("dotenv").config();
 
     
     const db = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-        host: 'localhost',
+        host: 'ec2-34-195-115-225.compute-1.amazonaws.com',
         dialect: 'postgres',
         port: '53659'
     });
