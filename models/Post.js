@@ -5,7 +5,6 @@ const Post = db.define("post", {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        allowNull: false
     },
     title: {
         type: Sequelize.STRING
