@@ -3,7 +3,7 @@ const db = require('../config/db');
 
 const Post = db.define("post", {
     id: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         primaryKey: true
     },
     title: {
