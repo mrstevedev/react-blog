@@ -4,9 +4,11 @@ const db = require('../config/db');
 const Post = db.define("post", {
     id: {
         type: Sequelize.INTEGER,
+        field: 'id',
+        allowNull: false,
         primaryKey: true,
         autoIncrement: true
-  },
+    },
     title: {
         type: Sequelize.STRING
     },
