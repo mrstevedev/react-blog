@@ -3,13 +3,13 @@ const env = require("dotenv").config();
 
     
     const db = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-        host: process.env.DB_HOST,
+        host: 'localhost',
         dialect: 'postgres',
         port: '53659'
     });
 
     db.authenticate()
-        .then(() => console.log(`Database connected to ${process.env.DB_NAME} successfully.`))
+        .then(() => console.log('Database connected successfully.'))
         .catch(err => console.log(err));
 
 
