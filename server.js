@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://desolate-mesa-01431.herokuapp.com',
     credentials: true
 }));
 
