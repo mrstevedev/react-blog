@@ -1,6 +1,6 @@
-# Made Renovation Custom Blog
+# Custom Blog
 
-Custom Blog application built with React.js, Material UI, Express.js, & Postgresql.
+Custom Blog application built with React.js, Material UI, Express.js, & MongoDB.
 
 ## Installation
 
