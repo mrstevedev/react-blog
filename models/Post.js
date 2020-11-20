@@ -1,20 +1,15 @@
-const Sequelize = require('sequelize').Sequelize;
+const mongoose = require('mongoose');
+
 const db = require('../config/db');
 
-const Post = db.define("post", {
-    id: {
-        type: Sequelize.INTEGER,
-        field: 'id',
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
-    },
+const PostSchema = new mongoose.Schema({
     title: {
-        type: Sequelize.STRING
+        type: String
     },
     body: {
-        type: Sequelize.STRING
+        type: String
     }
 });
 
+const Post = mongoose.model('Post', PostSchema);
 module.exports = Post;
