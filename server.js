@@ -4,23 +4,25 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const db = require('./config/db');
+const connectDB = require('./config/db');
 const Post = require('./models/Post');
 const Comment = require('./models/Comment');
 
 // Load env vars
 dotenv.config({ path: './.env' });
 
+connectDB();
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// app.use(helmet());
+app.use(helmet());
 app.use(morgan('dev'));
 
 app.use(cors({
-    origin: 'https://desolate-mesa-01431.herokuapp.com',
+    origin: 'http://localhost:3000',
     credentials: true
 }));
 
@@ -31,14 +33,14 @@ app.use(express.static('public'));
 // });
 
 app.get('/api/posts', (req, res) => {
-    Post.findAll()
+    Post.find()
         .then(posts => {
             res.json(posts);
         }).catch(err => console.log(err));
 });
 
 app.get('/api/comments', (req, res) => {
-    Comment.findAll()
+    Comment.find()
         .then(comment => {
             res.json(comment);
         }).catch(err => console.log(err))
