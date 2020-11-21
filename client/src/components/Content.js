@@ -16,14 +16,14 @@ const useStyles = makeStyles((theme) => ({
       whiteSpace: 'nowrap',
     },
     paperContent: {
-      padding: '3rem 4rem',
+      // padding: '3rem 4rem',
       margin: '1rem 1rem 0 1rem',
       textAlign: 'left',
       color: theme.palette.text.secondary,
       whiteSpace: 'nowrap',
       height: '98%',
       '@media(max-width: 768px)': {
-        padding: '3rem 2rem !important',      
+        // padding: '3rem 2rem !important',      
         whiteSpace: 'normal !important'
       }
     },
@@ -38,13 +38,13 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Content( props ) {
-  const { post, comments } = props;
+  const { posts, post, comments } = props;
   const classes = useStyles();
   return (
     <Fragment>
       <Grid item xs={10}>
         <Paper square={true} className={classes.paperContent}>
-           <Comment post={post} comments={comments} handleClickOpenComment={props.handleClickOpenComment} />
+           <Comment handleGetPost={props.handleGetPost} posts={posts} post={post} comments={comments} handleClickOpenComment={props.handleClickOpenComment} />
         </Paper>
       </Grid>
     </Fragment>
