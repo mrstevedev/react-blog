@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
 function Header() {
   const classes = useStyles();
   return (
-      <AppBar color="inherit" position="static">
+      <AppBar color="inherit" position="static" elevation="0">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Material-UI
+            <a href="/" style={{ color: '#333', textDecoration: 'none' }}>React.js Blog</a>
           </Typography>
         </Toolbar>
       </AppBar>
