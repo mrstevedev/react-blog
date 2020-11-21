@@ -71,8 +71,11 @@ function Sidebar( props ) {
         <Paper elevation={0} square={true} className={classes.paperInner}>
 
         <MenuList>
+        <MenuItem>
+          <Link href="/" style={{ fontWeight: 'bold', textDecoration: 'none' }}>React.js Blog</Link>
+        </MenuItem>
             { posts.map((post) => (
-                <Link key={post.id} href="#" onClick={(e) => props.handleGetPost(event, post)} underline="none" color="inherit">
+                <Link key={post._id} href="#" onClick={(e) => props.handleGetPost(event, post)} underline="none" color="inherit">
                     <MenuItem className={classes.menuItem}>
                         { post.title }
                         <CommentCount post={post} comments={comments} />
