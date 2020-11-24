@@ -10,6 +10,9 @@ const PostSchema = new mongoose.Schema({
     },
     body: {
         type: String
+    },
+    tag: {
+        type: String
     }
 });
 PostSchema.plugin(AutoIncrement, {id:'order_seq',inc_field: 'id'});
