@@ -15,3 +15,8 @@ body {
     padding: 6rem 8rem;
   }
 }
+
+::selection {
+    background-color: #333;
+    color: #fff;
+  }
