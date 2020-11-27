@@ -16,6 +16,10 @@ const PostSchema = new mongoose.Schema({
     },
     tags: {
         type: String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 });
 PostSchema.plugin(AutoIncrement, {id:'order_seq',inc_field: 'id'});
