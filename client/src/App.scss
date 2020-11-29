@@ -13,11 +13,33 @@ a {
     text-decoration: none;
 }
 
+.link {
+    outline: 0;
+    border-bottom: solid 1px transparent;
+    -webkit-transition: color .2s ease-out, border-bottom-color .2s ease-out;
+       -moz-transition: color .2s ease-out, border-bottom-color .2s ease-out;
+        -ms-transition: color .2s ease-out, border-bottom-color .2s ease-out;
+         -o-transition: color .2s ease-out, border-bottom-color .2s ease-out;
+            transition: color .2s ease-out, border-bottom-color .2s ease-out;
+    &:hover {
+      color: #3f51b5;
+      border-bottom: solid 1px #3f51b5;
+    }
+}
+
 @media (min-width: 768px) {
   .container {
     width: 1200px;
     padding: 6rem 8rem;
   }
+}
+
+.show {
+    display: block !important;
+}
+
+.hide {
+    display: none !important;
 }
 
 ::selection {
