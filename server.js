@@ -7,6 +7,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const Post = require('./models/Post');
 const Comment = require('./models/Comment');
+const path = require('path');
 
 // Load env vars
 dotenv.config({ path: './.env' });
@@ -29,7 +30,7 @@ app.use(cors({
 app.use(express.static('public'));
 
 // app.get("*", (req, res) => {
-//     res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
+//     res.send(path.resolve(__dirname, "client", "build", "index.html"));
 // });
 
 app.get('/api/posts', (req, res) => {
@@ -37,6 +38,26 @@ app.get('/api/posts', (req, res) => {
         .then(posts => {
             res.json(posts);
         }).catch(err => console.log(err));
+});
+
+app.get('/api/posts/:id', (req, res) => {
+    Post.find()
+        .then(posts => {
+            const filteredPost = posts.filter(post => post.id == req.params.id);
+            res.json(filteredPost);
+        }).catch(err => console.log(err));
+});
+
+app.patch('/api/posts/:id', (req, res, next) => {
+    const { id } = req.body.data;
+    console.log(id)
+    Post.findOneAndUpdate({ id: id }, { $inc: { likes: 1 } })
+        .exec(function(err, res) {
+            if(err) throw err;
+            else {
+                console.log(res);
+            }
+        })  
 });
 
 app.get('/api/comments', (req, res) => {
@@ -47,10 +68,12 @@ app.get('/api/comments', (req, res) => {
 })
 
 app.post('/api/addPost', (req, res) => {
-    const { postTitle, postBody } = req.body;
+    const { postName, postTitle, postTag, postBody } = req.body;
     res.json({ success: true, postTitle, postBody });
     Post.create({
+        name: postName,
         title: postTitle,
+        tags: postTag,
         body: postBody
     })
     .catch(err => console.log(err))
