@@ -58,6 +58,7 @@ app.patch('/api/posts/:id', (req, res, next) => {
                 console.log(res);
             }
         })  
+        return res.send({ success: 'OK' });
 });
 
 app.get('/api/comments', (req, res) => {
