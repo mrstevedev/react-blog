@@ -1,42 +1,16 @@
 import React, { Fragment } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import Moment from 'react-moment';
+import DayJS from 'react-dayjs';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(3),
-      marginTop: '0.4rem',
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-      whiteSpace: 'nowrap',
-    },
-    paperContent: {
-      padding: '3rem 8rem',
-      margin: '1rem 1rem 0 1rem',
-      textAlign: 'left',
-      color: theme.palette.text.secondary,
-      whiteSpace: 'nowrap',
-      height: '96%',
-      '@media(max-width: 768px)': {
-        padding: '3rem 2rem !important',      
-        whiteSpace: 'normal !important'
-      }
-    },
-    title: {
-      flexGrow: 1,
-    },
-    postText: {
-      padding: '0.4rem 0 1rem'
-    },
     commentSection: {
         padding: '1rem 0',
-        maxHeight: '624px',
-        overflow: 'scroll'
+        fontSize: '1.3rem',
+        fontWeight: 500,
+        color: 'rgb(136, 136, 136)'
     },
     commentHeader: {
         display: 'flex',
@@ -48,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
     },
     comment: {
         margin: '0.2rem 0',
-        padding: '1rem 2rem',
+        padding: '3rem 2rem',
         borderRadius: '6px',
         transition: '0.4s ease',
         '&:nth-child(odd)': {
-            backgroundColor: '#f7f7f7'
+            backgroundColor: '#fff'
         },
         '&:hover': {
             backgroundColor: '#f7f7f7',
@@ -72,11 +46,17 @@ const useStyles = makeStyles((theme) => ({
           }
     },
     commentTxt: {
-        padding: '0.5rem 0'
+        padding: '0.5rem 0',
+        fontSize: '1.3rem',
+        fontWeight: '500',
+        color: 'rgb(136, 136, 136)'
     },
     commentName: {
         display: 'flex',
-        justifyContent: 'space-between',
+        color: '#333',
+        flexDirection: 'column',
+        fontSize: '0.8rem',
+        // justifyContent: 'space-between',
         '@media(max-width: 768px)': {
             display: 'initial',
           }
@@ -85,17 +65,23 @@ const useStyles = makeStyles((theme) => ({
         margin: '1rem 0'
     },
     postDate: {
-        fontWeight: '500',
-        fontSize: '12px'
-    },
-    showCount: {
+        fontWeight: 'bold',
+        color: '#a7a7a7',
         fontSize: '14px'
     },
-    successMsg: {
-        fontWeight: 'bold',
-        color: 'cadetblue',
-        padding: '2rem 0'
-    }
+    showCount: {
+        color: '#ccc'
+    },
+    postContent: {
+        padding:  '2rem 2rem',
+        '@media(min-width: 768px)': {
+            padding:  '4rem 0rem'
+          }
+    },
+    linkText: {
+        color: "#3f51b5",
+        textDecoration: "none",
+      },
   }));
 
 function Comment(props) {
@@ -103,56 +89,55 @@ function Comment(props) {
     const { post, comments } = props;
     const count = comments.filter(
         (comment) => comment.post_id === post.id).length;
+
     return(
         <Fragment>
-            { Object.keys(post).length === 0 && post.constructor === Object ? (
+            {  Object.keys(post).length > 0 ? (
                <Fragment>
-                    <div>Welcome to the blog!</div>               
-                </Fragment>
-           ) : Object.keys(post).length > 0 ? (
-               <Fragment>
-                   <h3>{ post.title }</h3>
-                    <p className={classes.postText}>{ post.body }</p>
+                   <div>
+                   <div className={`${classes.postContent}`}>
                     <Divider />                    
                     <div className={classes.commentSection}>
                         <div className={classes.commentSectionInner}>
                             <div className={classes.commentHeader}>
-                            <h3>Comments</h3>
-                            <span className={ classes.showCount }>
-                                Showing { count } {" "}
+                            <h3 style={{ fontSize: '2.4rem', fontWeight: 'bold', color: '#000'}}>Comments <span className={ classes.showCount }>
+                                | Showing { count } {" "}
                                 { count === 1 ? 'comment' : 
                                   count >= 2  ? 'comments' :
                                   count === 0 ? 'comments' :
                                 ''}
-                            </span>
+                            </span></h3>                                                    
                             </div>
                         </div>
                     {count === 0 ? (
                         <div className={classes.commentSection}>
-                            <p>Be the first to comment on this post.</p>                                 
+                            <p className={classes.commentSectionTxt}>You must be signed in <Link className={`link ${classes.linkText}`} to="/signin">Sign In</Link></p>                                 
                         </div>
                     ) : ''}
                     { comments.filter((comment) => comment.post_id === post.id).map(comment => (
-                        <Fragment key={comment.id}>
-                            <div className={classes.comment} id={comment.id}>
-                            <h4 className={classes.commentName}>{ comment.name }  
+                        <Fragment key={comment._id}>
+                            <div className={classes.comment}>
+                            <h2 className={classes.commentName}>{ comment.name }  
                                 <span>
-                                    <p className={classes.postDate}>Posted on <Moment format="MMMM DD, YYYY">{ comment.createdAt }</Moment></p>                                
+                                    <p className={classes.postDate}>Posted on <DayJS date = { comment.createdAt } format="MMMM D, YYYY h:mm A" /></p>                                
                                 </span>     
-                            </h4>
+                            </h2>
                                 <p className={ classes.commentTxt }>{ comment.comment }</p>
                             </div>                       
                         </Fragment>
-                    ))}                        
+                    ))}                 
                     </div>
                         <Button
-                            variant="outlined" 
+                            variant="contained" 
                             color="primary" 
                             disableElevation
                             className={classes.commentBtn}
-                            onClick={props.handleClickOpenComment.bind(this, post)}>
+                            onClick={props.handleClickOpenComment.bind(this, post)}
+                            >
                             Add a comment
                         </Button>
+                        </div>
+                        </div>
                </Fragment>
            ) : ''}
         </Fragment>
