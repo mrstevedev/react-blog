@@ -3,10 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     commentCount: {
-        fontSize: '12px',
         position: 'absolute',
         right: '1rem',
-        background: '#e6e6e6',
         borderRadius: '100%',
         height: '20px',
         width: '20px',
@@ -14,15 +12,16 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: '11px',
-        color: '#000',
-        textIndent: 0
+        color: '#ababab',
+        textIndent: 0,
+        fontWeight: 'bold'
     }
 }))
 
 function CommentCount(props) {
     const classes = useStyles();
     const { post, comments } = props;
-    const count = comments.filter((comment) => comment.id === post.id).length;
+    const count = comments.filter((comment) => comment.post_id === post.id).length;
     return (
         <Fragment>
             <span className={ classes.commentCount }>
