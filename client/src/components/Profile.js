@@ -41,57 +41,6 @@ const useStyles = makeStyles((theme) => ({
     postText: {
       padding: '0.4rem 0 1rem'
     },
-    commentSection: {
-        padding: '1rem 0',
-        maxHeight: '624px',
-        overflow: 'scroll'
-    },
-    commentHeader: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        '@media(max-width: 768px)': {
-            display: 'initial',
-            padding: '3rem 1rem !important',      
-          }
-    },
-    comment: {
-        margin: '0.2rem 0',
-        padding: '1rem 2rem',
-        borderRadius: '6px',
-        transition: '0.4s ease',
-        '&:nth-child(odd)': {
-            backgroundColor: '#f7f7f7'
-        },
-        '&:hover': {
-            backgroundColor: '#f7f7f7',
-        },
-        '@media(max-width: 415px)': {
-            padding: '2rem 0',
-            borderBottom: 'solid 1px #ccc',
-            '&:last-child': {
-                borderBottom: 'solid 1px transparent',
-            },
-            '&:nth-child(odd)': {
-                backgroundColor: 'transparent'
-            },
-            '&:hover': {
-                backgroundColor: 'transparent',
-            },
-          }
-    },
-    commentTxt: {
-        padding: '0.5rem 0'
-    },
-    commentName: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        '@media(max-width: 768px)': {
-            display: 'initial',
-          }
-    },
-    commentBtn: {
-        margin: '1rem 0'
-    },
     postDate: {
         fontWeight: '500',
         fontSize: '12px'
@@ -138,8 +87,13 @@ const useStyles = makeStyles((theme) => ({
         margin: '1.4rem'
     },
     profileLabel: {
-        color: '#333',
-        margin: '1rem 0'
+        color: '#a5a5a5',
+        margin: '1rem 0',
+        fontSize: '0.76rem',
+        textTransform: 'uppercase'
+    },
+    profileRow: {
+        margin: '2rem 0'
     }
   }));
 
@@ -155,31 +109,32 @@ function Profile(props) {
     return(
         <Fragment>
           <div className="container">
-                <h3 style={{ fontSize: '2.4rem', fontWeight: 'bold', color: '#000'}}>Profile<span className={classes.adminText}> | Admin</span></h3>                        
+                <h3 style={{ fontSize: '2.4rem', fontWeight: 'bold', color: '#000'}}>Profile<span className={classes.adminText}> | ProfileUser</span></h3>                        
                     <div>
                         <p style={{
                             width: '100%',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis', fontSize: '1.3rem', fontWeight: '500', color: '#888', lineHeight: '43px' }}
                             ></p>
-                        <div style={{ padding: '3rem 0', borderRadius: '4px', margin: '2rem 0' }}>
-                            <h3 className={ classes.profileLabel }>Name: Jay Gordon</h3>
-                            <h3 className={ classes.profileLabel }>Location: Eastlake, CA</h3>
-                            <h3 className={ classes.profileLabel }>Post Count: 100</h3>
-                        {/* <form className={classes.root} noValidate autoComplete="off">
-                            <TextField id="standard-basic" label="Name" className={ classes.textField } />
-                            <TextField id="standard-basic" label="Location" className={ classes.textField } />
-                            <TextField id="standard-basic" label="Standard" className={ classes.textField } />
-                            <Button
-                            variant="contained" 
-                            color="primary" 
-                            disableElevation
-                            className={classes.commentBtn}
-                            // onClick={props.handleClickOpenComment.bind(this, post)}
-                            >
-                            Save
-                        </Button>
-                        </form> */}
+                        <div style={{ padding: '2rem 0', borderRadius: '4px', margin: '0rem 0' }}>
+                            <div className={ classes.profileRow }>
+                            <h2 className={ classes.profileLabel }>Name:</h2>
+                            <h3> Jay Gordon</h3>
+                            </div>
+                           <div className={ classes.profileRow }>
+                           <h2 className={ classes.profileLabel }>Location:</h2>
+                            <h3> Eastlake, CA</h3>
+                           </div>
+                            <div className={ classes.profileRow }>
+                            <h2 className={ classes.profileLabel }>Post Count:</h2>
+                            <h3> 100</h3>
+                            </div>
+                            <Button variant="contained" color="default" style={{ margin: '0 0.5rem 0 0' }}>
+                                Edit
+                            </Button>
+                            <Button variant="contained" color="primary">
+                                Update
+                            </Button>                            
                         </div>
                 </div>                        
             </div>    
