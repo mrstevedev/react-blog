@@ -8,6 +8,7 @@ const connectDB = require('./config/db');
 const Post = require('./models/Post');
 const Comment = require('./models/Comment');
 const path = require('path');
+const paginate = require('express-paginate');
 
 // Load env vars
 dotenv.config({ path: './.env' });
@@ -15,6 +16,9 @@ dotenv.config({ path: './.env' });
 connectDB();
 
 const app = express();
+
+// keep this before all routes that will use pagination
+app.use(paginate.middleware(10, 50));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -33,11 +37,36 @@ app.use(express.static('public'));
 //     res.send(path.resolve(__dirname, "client", "build", "index.html"));
 // });
 
-app.get('/api/posts', (req, res) => {
-    Post.find()
-        .then(posts => {
-            res.json(posts);
-        }).catch(err => console.log(err));
+app.get('/api/posts', async (req, res) => {
+
+    try {
+
+        const [ results, itemCount ] = await Promise.all([
+          Post.find({}).limit(req.query.limit).skip(req.skip).lean().exec(),
+          Post.count({})
+        ]);
+    
+        const pageCount = Math.ceil(itemCount / req.query.limit);
+    
+        if (req.accepts('json')) {
+          // inspired by Stripe's API response for list objects
+          res.json({
+            object: 'list',
+            has_more: paginate.hasNextPages(req)(pageCount),
+            data: results
+          });
+        } else {
+          res.render('posts', {
+            posts: results,
+            pageCount,
+            itemCount,
+            pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+          });
+        }
+    
+      } catch (err) {
+        next(err);
+      }
 });
 
 app.get('/api/posts/:id', (req, res) => {
@@ -49,15 +78,25 @@ app.get('/api/posts/:id', (req, res) => {
 });
 
 app.patch('/api/posts/:id', (req, res, next) => {
-    const { id } = req.body.data;
-    console.log(id)
-    Post.findOneAndUpdate({ id: id }, { $inc: { likes: 1 } })
+    const { id, decrement } = req.body.data;
+    console.log(decrement)
+    if(id && !decrement) {
+      Post.findOneAndUpdate({ id: id }, { $inc: { likes: 1 } })
         .exec(function(err, res) {
             if(err) throw err;
             else {
-                console.log(res);
+                //console.log(res);
             }
-        })  
+        }) 
+    } else if (id && decrement) {
+      Post.findOneAndUpdate({ id: id }, { $inc: { likes: -1 } })
+        .exec(function(err, res) {
+            if(err) throw err;
+            else {
+                //console.log(res);
+            }
+        }) 
+    }
         return res.send({ success: 'OK' });
 });
 
