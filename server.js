@@ -33,9 +33,9 @@ app.use(cors({
 
 app.use(express.static('public'));
 
-// app.get("*", (req, res) => {
-//     res.send(path.resolve(__dirname, "client", "build", "index.html"));
-// });
+app.get("*", (req, res) => {
+    res.send(path.resolve(__dirname, "client", "public", "index.html"));
+});
 
 app.get('/api/posts', async (req, res) => {
 
