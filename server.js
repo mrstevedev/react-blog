@@ -27,14 +27,14 @@ app.use(helmet());
 app.use(morgan('dev'));
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://mysterious-forest-62530.herokuapp.com/',
     credentials: true
 }));
 
 app.use(express.static('public'));
 
 app.get("*", (req, res) => {
-    res.send(path.resolve(__dirname, "client", "public", "index.html"));
+    res.send(path.resolve(__dirname, "public", "index.html"));
 });
 
 app.get('/api/posts', async (req, res) => {
