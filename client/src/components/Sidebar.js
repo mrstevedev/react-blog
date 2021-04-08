@@ -73,6 +73,24 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
     textDecoration: 'none'
   },
+  sideBarLogoContainer: {
+    "@media(max-width: 545px)": {
+      display: 'none'
+    }
+  },
+  sideBarLogo: {
+    borderRadius: '4px', 
+    padding: '0.2rem 0.4rem', 
+    background: '#252525',
+    color: '#525252',
+    fontWeight: 'bold',
+    textDecoration: 'none',
+    textTransform: 'uppercase',
+    fontSize: '0.8rem',
+    "@media(max-width: 545px)": {
+      display: 'none'
+    }
+  },
   sidebarBtn: {
     fontWeight: 'bold',
     textTransform: 'capitalize'
@@ -91,8 +109,8 @@ function Sidebar( props ) {
         <Paper elevation={0} square={true} className={classes.paperInner}>
 
         <MenuList>
-        <MenuItem>
-          <Link onClick={props.handleRemoveCurrent} to="/" style={{ borderRadius: '4px', padding: '0.2rem 0.4rem', background: '#252525', color: '#525252', fontWeight: 'bold', textDecoration: 'none', textTransform: 'uppercase', fontSize: '0.8rem' }}>
+        <MenuItem  className={classes.sideBarLogoContainer}>
+          <Link onClick={props.handleRemoveCurrent} to="/" className={classes.sideBarLogo}>
             React.js Blog
             </Link>
         </MenuItem>
