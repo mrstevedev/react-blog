@@ -34,6 +34,13 @@ a {
   }
 }
 
+@media(max-width: 545px) {
+  .container {
+    padding: 6rem 2rem 0 5rem;
+    width: 100%;
+  }
+}
+
 .show {
   display: block !important;
   opacity: 1 !important;
@@ -139,8 +146,9 @@ a {
   width: 300px;
   position: fixed;
   right: 0;
+  z-index: 1;
   background: #fff;
-  padding: 2.4rem 0rem 0 0rem;
+  padding: 2.4rem 1rem 0 1rem;
   display: none;
   transition: 0.06s ease-in-out;
 }
